@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.su.questionnaire.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="30px"
+            android:paddingBottom="30px">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20px">
+
+                <TextView
+                    android:id="@+id/morn_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.11"
+                    android:text="1. 請問早上喜歡看什麼資訊呢？"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/morn_info"
+                    android:layout_marginStart="23dp">
+                    <CheckBox
+                        android:id="@+id/chktech_news_morn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="科技新聞"/>
+                    <CheckBox
+                        android:id="@+id/chkweather_morn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="氣象資訊"/>
+                    <CheckBox
+                        android:id="@+id/chkptt_morn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PTT文章"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20px">
+                <TextView
+                    android:id="@+id/noon_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2. 請問中午喜歡看什麼資訊呢？"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/noon_info"
+                    android:layout_marginStart="26dp">
+                    <CheckBox
+                        android:id="@+id/chksame_noon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="同上"/>
+                    <CheckBox
+                        android:id="@+id/chktech_news_noon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="科技新聞"/>
+                    <CheckBox
+                        android:id="@+id/chkweather_noon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="氣象資訊"/>
+                    <CheckBox
+                        android:id="@+id/chkptt_noon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PTT文章"/>
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20px">
+
+                <TextView
+                    android:id="@+id/after_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="3. 請問下午喜歡看什麼資訊呢？"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/after_info"
+                    android:layout_marginStart="26dp">
+                    <CheckBox
+                        android:id="@+id/chksame_after"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="同上"/>
+                    <CheckBox
+                        android:id="@+id/chktech_news_after"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="科技新聞"/>
+                    <CheckBox
+                        android:id="@+id/chkweather_after"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="氣象資訊"/>
+                    <CheckBox
+                        android:id="@+id/chkptt_after"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PTT文章"/>
+                </LinearLayout>
+            </RelativeLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="送出問卷"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
