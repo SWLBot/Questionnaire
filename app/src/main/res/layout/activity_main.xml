@@ -17,141 +17,155 @@
             android:paddingTop="30px"
             android:paddingBottom="30px">
 
-            <TextView
-                android:id="@+id/textView3"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="64dp"
+                    android:text="暱稱"
+                    android:textSize="20sp"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/nickName" />
+
+                <EditText
+                    android:id="@+id/nickName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="" />
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textbirthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="64dp"
+                    android:text="生日"
+                    android:textSize="20sp"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/birthday" />
+
+                <EditText
+                    android:id="@+id/birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="date"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/occupation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身份"
+                    android:textSize="20sp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="66dp" />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/occupation"
+                    android:layout_marginStart="64dp">
+
+                    <RadioButton
+                        android:id="@+id/bachelor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="大學生" />
+                    <RadioButton
+                        android:id="@+id/masterDr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="研究生/博士生"/>
+                    <RadioButton
+                        android:id="@+id/faculty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="教職員"/>
+                </RadioGroup>
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="20px">
+                android:layout_margin="10px">
 
                 <TextView
-                    android:id="@+id/morn_info"
+                    android:id="@+id/user_preference"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.11"
-                    android:text="1. 請問早上喜歡看什麼資訊呢？"
+                    android:text="請問平常偏好的資訊？"
                     android:layout_centerVertical="true"
                     android:layout_alignParentStart="true" />
                 <LinearLayout
+                    android:id="@+id/checkboxes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/morn_info"
-                    android:layout_marginStart="23dp">
+                    android:layout_alignParentEnd="true">
                     <CheckBox
-                        android:id="@+id/chktech_news_morn"
+                        android:id="@+id/inside"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="科技新聞"/>
+                        android:text="INSIDE 硬塞的網路趨勢觀察"/>
                     <CheckBox
-                        android:id="@+id/chkweather_morn"
+                        android:id="@+id/techOrange"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="氣象資訊"/>
+                        android:text="Tech Orange科技報橘"/>
                     <CheckBox
-                        android:id="@+id/chkptt_morn"
+                        android:id="@+id/medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PTT文章"/>
+                        android:text="Medium"/>
+                    <CheckBox
+                        android:id="@+id/pttBeauty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PTT 表特板"/>
+                    <CheckBox
+                        android:id="@+id/pttJoke"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PTT Joke板"/>
+                    <CheckBox
+                        android:id="@+id/pttStupid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PTT 笨板"/>
                 </LinearLayout>
 
             </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="20px">
-                <TextView
-                    android:id="@+id/noon_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="2. 請問中午喜歡看什麼資訊呢？"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true" />
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/noon_info"
-                    android:layout_marginStart="26dp">
-                    <CheckBox
-                        android:id="@+id/chksame_noon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="同上"/>
-                    <CheckBox
-                        android:id="@+id/chktech_news_noon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="科技新聞"/>
-                    <CheckBox
-                        android:id="@+id/chkweather_noon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="氣象資訊"/>
-                    <CheckBox
-                        android:id="@+id/chkptt_noon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="PTT文章"/>
-                </LinearLayout>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="20px">
 
-                <TextView
-                    android:id="@+id/after_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="3. 請問下午喜歡看什麼資訊呢？"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/after_info"
-                    android:layout_marginStart="26dp">
-                    <CheckBox
-                        android:id="@+id/chksame_after"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="同上"/>
-                    <CheckBox
-                        android:id="@+id/chktech_news_after"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="科技新聞"/>
-                    <CheckBox
-                        android:id="@+id/chkweather_after"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="氣象資訊"/>
-                    <CheckBox
-                        android:id="@+id/chkptt_after"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="PTT文章"/>
-                </LinearLayout>
-            </RelativeLayout>
             <Button
+                android:id="@+id/submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="送出問卷"/>
+            <TextView
+                android:id="@+id/bluetooth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="123"/>
         </LinearLayout>
     </ScrollView>
 
