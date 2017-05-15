@@ -14,14 +14,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.view.View;
-import android.view.ViewGroup;
+import android.content.Intent;
 
 
 import java.io.DataOutputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,7 +29,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final String SECURE_SETTINGS_BLUETOOTH_ADDRESS = "bluetooth_address";
-    public String path = "http://140.113.123.248:3000/questionnaire";
+    public String path = "http://140.113.17.226:3000/questionnaire";
     public String address;
     public TextView text;
     private CheckBox inside;
@@ -39,10 +38,12 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox beauty;
     private CheckBox joke;
     private CheckBox stupid;
+    private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        intent = new Intent(this,Like.class);
         address = getBluetoothMacAddress(this);
         text = (TextView)findViewById(R.id.bluetooth);
         text.setText(address);
@@ -57,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Thread thread = new Thread(mutiThread);
                 thread.start();
+                try {
+                    startActivity(intent);
+                }catch (Exception e){
+                    text.setText(e.toString());
+                }
             }
         });
     }
@@ -122,12 +128,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 json.put("user_preference", arr);
 
-                text.setText(json.toString());
-                text.setText(sendUserPreference(path, json));
+//                text.setText(json.toString());
+                sendUserPreference(path, json);
             } catch (Exception e){
                 text.setText("Error occurred!");
             }
-
             return;
         }
     };
