@@ -5,6 +5,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.ExpandedMenuView;
 import android.util.Log;
@@ -16,20 +17,30 @@ import android.widget.EditText;
 import android.view.View;
 import android.content.Intent;
 
-
+import java.io.IOException;
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Objects;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final String SECURE_SETTINGS_BLUETOOTH_ADDRESS = "bluetooth_address";
-    public String path = "http://140.113.17.226:3000/questionnaire";
+    public String path = "http://140.113.000.000:3000/appregister";
     public String address;
     public TextView text;
     private CheckBox inside;
@@ -39,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox joke;
     private CheckBox stupid;
     private Intent intent;
+    private String textMsg;
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    private final OkHttpClient client = new OkHttpClient();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,11 +72,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Thread thread = new Thread(mutiThread);
                 thread.start();
-                try {
-                    startActivity(intent);
-                }catch (Exception e){
-                    text.setText(e.toString());
-                }
             }
         });
     }
@@ -129,34 +138,47 @@ public class MainActivity extends AppCompatActivity {
                 json.put("user_preference", arr);
 
 //                text.setText(json.toString());
-                sendUserPreference(path, json);
+                String result = sendUserPreference(path, json);
+                if(Objects.equals(result,new String("success"))) {
+                    try {
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        textMsg = e.toString();
+                    }
+                    text.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            text.setText(textMsg);
+                        }
+                    });
+                }
             } catch (Exception e){
-                text.setText("Error occurred!");
+                textMsg = e.toString();
             }
+            text.post(new Runnable() {
+                @Override
+                public void run() {
+                    text.setText(textMsg);
+                }
+            });
             return;
         }
     };
     public String sendUserPreference(String path, JSONObject msg){
         try {
-            URL url = new URL(path);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(5000);
-            conn.setConnectTimeout(10000);
-            conn.setDoOutput(true);
-            conn.setRequestMethod("POST");
-            conn.setUseCaches(false);
-            OutputStream os= conn.getOutputStream();
-            DataOutputStream dos = new DataOutputStream(os);
-            dos.writeBytes(msg.toString());
-            dos.flush();
-            dos.close();
-            if(conn.getResponseCode() == 200){
-                return "Success";
-            }else{
-                return "Failed";
-            }
+            RequestBody body = RequestBody.create(JSON,msg.toString());
+            Request request = new Request.Builder().url(path).post(body).build();
+            Response response = client.newCall(request).execute();
+            textMsg = response.body().string();
         }catch (Exception e){
-            return "Yo";
+            textMsg = e.toString();
         }
+        text.post(new Runnable() {
+            @Override
+            public void run() {
+                text.setText(textMsg);
+            }
+        });
+        return textMsg;
     }
 }
